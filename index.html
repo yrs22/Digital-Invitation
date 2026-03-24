@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan Ita & Nunu</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            800: '#1e3a8a',
+                            900: '#172554',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    },
+                    fontFamily: {
+                        'script': ['"Great Vibes"', 'cursive'],
+                        'sans': ['Poppins', 'sans-serif'],
+                        'arabic': ['Amiri', 'serif'],
+                    },
+                    backgroundImage: {
+                        'islamic-pattern': "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23ffffff\\' fill-opacity=\\'0.05\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+        .cover-overlay {
+            transition: transform 0.8s cubic-bezier(0.86, 0, 0.07, 1), opacity 0.8s ease;
+        }
+        .cover-hidden {
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
+        }
+        .bismillah {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="bg-blue-50 text-slate-800 antialiased relative">
+
+    <!-- COVER SECTION -->
+    <div id="cover" class="cover-overlay fixed inset-0 z-50 flex flex-col items-center justify-center bg-navy-900 bg-islamic-pattern text-white min-h-screen w-full">
+        <div class="text-center px-6">
+            <p class="text-sm md:text-base tracking-widest uppercase mb-4 text-blue-200">The Intimate Wedding Of</p>
+            <h1 class="font-script text-6xl md:text-8xl text-gold-400 mb-6 drop-shadow-lg">Ita & Nunu</h1>
+            <p class="text-sm md:text-base mb-8 text-blue-100 italic">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+            
+            <div class="mb-10 px-8 py-3 bg-white/10 rounded-lg backdrop-blur-sm inline-block border border-white/20">
+                <span class="block font-semibold text-lg">Tamu Undangan</span>
+            </div>
+            
+            <p class="text-xs text-blue-200 mb-8 max-w-xs mx-auto">Tanpa mengurangi rasa hormat, kami mengundang Anda untuk hadir di momen bahagia kami.</p>
+            
+            <button onclick="openInvitation()" class="bg-gold-500 hover:bg-gold-400 text-navy-900 font-semibold py-3 px-8 rounded-full shadow-lg transform transition hover:scale-105 flex items-center gap-2 mx-auto">
+                <i class="fa-solid fa-envelope-open-text"></i> Buka Undangan
+            </button>
+        </div>
+    </div>
+
+    <!-- AUDIO BUTTON -->
+    <button id="audio-btn" class="fixed bottom-6 right-6 z-40 bg-navy-800 text-gold-400 p-4 rounded-full shadow-xl transition-transform hover:scale-110 hidden" onclick="toggleAudio()">
+        <i id="audio-icon" class="fa-solid fa-play"></i> 
+    </button>
+
+    <audio id="bg-music" loop>
+        <source src="Janji Suci Cover Saxophone - Yovie And Nuno - Ardan RF (youtube).mp3" type="audio/mpeg">
+        Browser Anda tidak mendukung elemen audio.
+    </audio>
+
+    <!-- MAIN CONTENT -->
+    <main class="w-full max-w-md md:max-w-2xl lg:max-w-4xl mx-auto bg-white shadow-2xl overflow-hidden min-h-screen relative">
+        
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[80vh] flex flex-col items-center justify-center bg-navy-800 bg-islamic-pattern text-white text-center p-8 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-navy-900/90"></div>
+            <div class="z-10 fade-in">
+                <p class="text-sm tracking-[0.2em] mb-4 text-blue-200">BISMILLAHIRRAHMANIRRAHIM</p>
+                <div class="w-24 h-px bg-gold-400 mx-auto mb-6"></div>
+                <h2 class="font-script text-5xl md:text-7xl text-gold-400 mb-4">Ita & Nunu</h2>
+                <p class="text-lg md:text-xl font-light tracking-wide text-blue-100">Intimate Wedding</p>
+            </div>
+            <div class="absolute bottom-0 left-0 opacity-20 w-32 h-32 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path fill=\'%23ffffff\' d=\'M0,100 Q50,100 50,50 Q100,50 100,0 Q50,0 50,50 Q0,50 0,100 Z\'/></svg>')] bg-no-repeat bg-contain"></div>
+            <div class="absolute top-0 right-0 opacity-20 w-32 h-32 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path fill=\'%23ffffff\' d=\'M100,0 Q50,0 50,50 Q0,50 0,100 Q50,100 50,50 Q100,50 100,0 Z\'/></svg>')] bg-no-repeat bg-contain transform rotate-180"></div>
+        </section>
+
+        <!-- QUOTE SECTION -->
+        <section class="py-16 px-8 text-center bg-blue-50 relative">
+            <div class="fade-in max-w-2xl mx-auto">
+                <h3 class="text-2xl font-arabic text-navy-800 mb-6 bismillah text-center" dir="rtl">
+                    بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+                </h3>
+                <p class="text-xl font-arabic text-slate-800 mb-6 bismillah text-center" dir="rtl">
+                    وَمِنْ اٰيٰتِهٖٓ اَنْ خَلَقَ لَكُمْ مِّنْ اَنْفُسِكُمْ اَزْوَاجًا لِّتَسْكُنُوْٓا اِلَيْهَا وَجَعَلَ بَيْنَكُمْ مَّوَدَّةً وَّرَحْمَةً ۗاِنَّ فِيْ ذٰلِكَ لَاٰيٰتٍ لِّقَوْمٍ يَّتَفَكَّرُوْنَ 
+                </p>
+                <p class="text-slate-600 italic leading-relaxed mb-6">
+                    "Dan di antara tanda-tanda (kebesaran)-Nya ialah bahwa Dia menciptakan pasangan-pasangan untukmu dari (jenis) dirimu sendiri agar kamu merasa tenteram kepadanya. Dia menjadikan di antaramu rasa cinta dan kasih sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
+                </p>
+                <p class="font-semibold text-navy-800">(QS. Ar-Rum: 21)</p>
+            </div>
+        </section>
+
+        <!-- COUPLE SECTION -->
+        <section class="py-20 px-8 bg-white relative">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-xs font-bold tracking-[0.2em] text-navy-800 uppercase mb-2">Pasangan Mempelai</h2>
+                <div class="w-16 h-1 bg-gold-400 mx-auto rounded-full"></div>
+                <p class="mt-4 text-slate-600 max-w-lg mx-auto">Assalamu'alaikum Warahmatullahi Wabarakatuh. Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud menyelenggarakan pernikahan putra-putri kami:</p>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12 md:gap-8 max-w-4xl mx-auto">
+                <!-- Bride -->
+                <div class="flex flex-col items-center text-center fade-in flex-1">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-t-full rounded-b-xl overflow-hidden border-4 border-blue-100 shadow-xl mb-6 relative bg-slate-200">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400">
+                            <span class="text-sm">[Foto Ita]</span>
+                        </div>
+                    </div>
+                    <h3 class="font-script text-4xl text-navy-800 mb-2">Ita Nurhayati</h3>
+                    <p class="text-sm text-slate-500 mb-1">Putri dari:</p>
+                    <p class="font-medium text-navy-900">Bapak H. Ama Sofyana (Alm.)<br>& Ibu Hj. Rosmana</p>
+                </div>
+
+                <!-- Ampersand -->
+                <div class="fade-in hidden md:block">
+                    <span class="font-script text-6xl text-gold-400">&</span>
+                </div>
+                <div class="fade-in md:hidden">
+                    <span class="font-script text-5xl text-gold-400">&</span>
+                </div>
+
+                <!-- Groom -->
+                <div class="flex flex-col items-center text-center fade-in flex-1">
+                    <div class="w-48 h-48 md:w-56 md:h-56 rounded-t-full rounded-b-xl overflow-hidden border-4 border-blue-100 shadow-xl mb-6 relative bg-slate-200">
+                        <div class="absolute inset-0 flex items-center justify-center text-slate-400">
+                            <span class="text-sm">[Foto Nunu]</span>
+                        </div>
+                    </div>
+                    <h3 class="font-script text-4xl text-navy-800 mb-2">Nunu</h3>
+                    <p class="text-sm text-slate-500 mb-1">Putra dari:</p>
+                    <p class="font-medium text-navy-900">Bapak [Nama Ayah]<br>& Ibu [Nama Ibu]</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- EVENT DETAILS SECTION -->
+        <section class="py-20 px-6 bg-navy-800 bg-islamic-pattern text-white relative">
+            <div class="absolute inset-0 bg-navy-900/80"></div>
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <div class="text-center mb-12 fade-in">
+                    <h2 class="text-xs font-bold tracking-[0.2em] text-blue-200 uppercase mb-2">Informasi Acara</h2>
+                    <h3 class="font-script text-4xl text-gold-400">Rangkaian Acara</h3>
+                </div>
+
+                <!-- Waktu Acara -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <!-- Akad Nikah -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center fade-in shadow-xl">
+                        <div class="w-16 h-16 mx-auto bg-gold-400/20 rounded-full flex items-center justify-center mb-4 text-gold-400 text-2xl">
+                            <i class="fa-solid fa-ring"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4 tracking-wide">Akad Nikah</h4>
+                        <div class="space-y-3 text-blue-50">
+                            <p class="flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-calendar text-gold-400"></i> Sabtu, 4 April 2026
+                            </p>
+                            <p class="flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-clock text-gold-400"></i> 08:00 WIB - 10:00 WIB
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Syukuran / Resepsi -->
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 text-center fade-in shadow-xl">
+                        <div class="w-16 h-16 mx-auto bg-gold-400/20 rounded-full flex items-center justify-center mb-4 text-gold-400 text-2xl">
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                        <h4 class="text-2xl font-bold mb-4 tracking-wide">Syukuran (Intimate)</h4>
+                        <div class="space-y-3 text-blue-50">
+                            <p class="flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-calendar text-gold-400"></i> Sabtu, 4 April 2026
+                            </p>
+                            <p class="flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-clock text-gold-400"></i> 11:00 WIB - 14:00 WIB
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lokasi Acara (Disatukan) -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 md:p-10 border border-gold-400/30 text-center fade-in shadow-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 opacity-10 w-32 h-32 bg-[url('data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><path fill=\'%23ffffff\' d=\'M100,0 Q50,0 50,50 Q0,50 0,100 Q50,100 50,50 Q100,50 100,0 Z\'/></svg>')] bg-no-repeat bg-contain transform rotate-180"></div>
+                    
+                    <div class="w-16 h-16 mx-auto bg-gold-400/20 rounded-full flex items-center justify-center mb-4 text-gold-400 text-2xl relative z-10">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h4 class="text-xl md:text-2xl font-bold mb-2 tracking-wide relative z-10">Lokasi Acara</h4>
+                    <p class="font-script text-3xl md:text-4xl text-gold-400 mb-4 relative z-10">Mustika Resto & Garden Party</p>
+                    <p class="text-sm md:text-base text-blue-100 mb-8 max-w-lg mx-auto relative z-10">
+                        Muara Sanding, Kec. Garut Kota, Kabupaten Garut, Jawa Barat 44119
+                    </p>
+                    
+                    <a href="https://maps.app.goo.gl/AgxE1S7HDgSLSzBf9" target="_blank" class="inline-block bg-gold-500 text-navy-900 px-8 py-3 rounded-full text-sm font-bold hover:bg-gold-400 transition-all shadow-[0_0_15px_rgba(251,191,36,0.5)] hover:scale-105 relative z-10">
+                        <i class="fa-solid fa-location-arrow mr-2"></i> Buka Google Maps
+                    </a>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- COUNTDOWN SECTION -->
+        <section class="py-16 px-6 bg-blue-50 text-center relative overflow-hidden">
+            <div class="fade-in">
+                <h3 class="text-xl font-bold text-navy-800 mb-8">Menuju Hari Bahagia</h3>
+                <div class="flex justify-center gap-4 md:gap-8 max-w-lg mx-auto">
+                    <div class="bg-white w-20 h-24 md:w-24 md:h-28 rounded-xl shadow-lg flex flex-col items-center justify-center border-b-4 border-navy-800">
+                        <span id="days" class="text-3xl md:text-4xl font-bold text-navy-900">00</span>
+                        <span class="text-xs md:text-sm text-slate-500 mt-1 uppercase font-semibold">Hari</span>
+                    </div>
+                    <div class="bg-white w-20 h-24 md:w-24 md:h-28 rounded-xl shadow-lg flex flex-col items-center justify-center border-b-4 border-navy-800">
+                        <span id="hours" class="text-3xl md:text-4xl font-bold text-navy-900">00</span>
+                        <span class="text-xs md:text-sm text-slate-500 mt-1 uppercase font-semibold">Jam</span>
+                    </div>
+                    <div class="bg-white w-20 h-24 md:w-24 md:h-28 rounded-xl shadow-lg flex flex-col items-center justify-center border-b-4 border-navy-800">
+                        <span id="minutes" class="text-3xl md:text-4xl font-bold text-navy-900">00</span>
+                        <span class="text-xs md:text-sm text-slate-500 mt-1 uppercase font-semibold">Menit</span>
+                    </div>
+                    <div class="bg-white w-20 h-24 md:w-24 md:h-28 rounded-xl shadow-lg flex flex-col items-center justify-center border-b-4 border-gold-400">
+                        <span id="seconds" class="text-3xl md:text-4xl font-bold text-gold-500">00</span>
+                        <span class="text-xs md:text-sm text-slate-500 mt-1 uppercase font-semibold">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP & WISHES SECTION -->
+        <section class="py-20 px-6 bg-white">
+            <div class="max-w-2xl mx-auto fade-in">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl font-bold text-navy-800 mb-2">RSVP & Ucapan</h2>
+                    <p class="text-slate-500 text-sm">Kehadiran dan doa restu Anda sangat berarti bagi kami.</p>
+                </div>
+
+                <div class="bg-blue-50 p-6 md:p-8 rounded-2xl shadow-inner border border-blue-100">
+                    <form action="https://formspree.io/f/xjganpbq" method="POST" class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-navy-900 mb-1">Nama Lengkap</label>
+                            <input type="text" name="nama" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-navy-800" placeholder="Masukkan nama Anda" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-navy-900 mb-1">Konfirmasi Kehadiran</label>
+                            <select name="kehadiran" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-navy-800" required>
+                                <option value="" disabled selected>Pilih kehadiran</option>
+                                <option value="Hadir">Ya, Saya akan hadir</option>
+                                <option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-navy-900 mb-1">Ucapan & Doa</label>
+                            <textarea name="ucapan" rows="4" class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-navy-800" placeholder="Berikan ucapan dan doa untuk kedua mempelai" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-navy-800 hover:bg-navy-900 text-white font-semibold py-3 rounded-lg shadow-md transition duration-300 flex justify-center items-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Kirim Ucapan
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="bg-navy-900 text-center py-12 px-6 text-white relative">
+            <div class="fade-in">
+                <p class="text-sm text-blue-200 mb-6 max-w-lg mx-auto">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir untuk memberikan doa restu.</p>
+                <h3 class="font-script text-3xl md:text-4xl text-gold-400 mb-2">Wassalamu'alaikum Wr. Wb.</h3>
+                <p class="mb-8 font-semibold">Kami yang berbahagia,</p>
+                <h2 class="font-script text-4xl text-white mb-8">Ita & Nunu</h2>
+                
+                <div class="w-32 h-px bg-white/20 mx-auto mb-6"></div>
+                <p class="text-xs text-slate-400">Dibuat dengan <i class="fa-solid fa-heart text-red-500"></i> untuk Ita & Nunu</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // --- 1. OPEN INVITATION & PLAY AUDIO ---
+        const cover = document.getElementById('cover');
+        const audioBtn = document.getElementById('audio-btn');
+        const bgMusic = document.getElementById('bg-music');
+        const audioIcon = document.getElementById('audio-icon');
+        let isPlaying = false;
+
+        document.body.style.overflow = 'hidden';
+
+        function openInvitation() {
+            cover.classList.add('cover-hidden');
+            audioBtn.classList.remove('hidden');
+            document.body.style.overflow = 'auto';
+            
+            bgMusic.play().then(() => {
+                isPlaying = true;
+                audioIcon.classList.remove('fa-play');
+                audioIcon.classList.add('fa-pause');
+            }).catch(error => {
+                console.log("Autoplay dicegah oleh browser. Interaksi user dibutuhkan.");
+            });
+        }
+
+        // --- 2. TOGGLE AUDIO ---
+        function toggleAudio() {
+            if (isPlaying) {
+                bgMusic.pause();
+                audioIcon.classList.remove('fa-pause');
+                audioIcon.classList.add('fa-play');
+            } else {
+                bgMusic.play();
+                audioIcon.classList.remove('fa-play');
+                audioIcon.classList.add('fa-pause');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // --- 3. COUNTDOWN TIMER ---
+        const countDownDate = new Date("April 04, 2026 08:00:00").getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerHTML = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerHTML = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerHTML = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerHTML = seconds < 10 ? "0" + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+        }, 1000);
+
+        // --- 4. SCROLL ANIMATION ---
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // --- 5. FORM SUBMISSION ---
+        function submitForm(event) {
+            event.preventDefault();
+            const successMsg = document.getElementById('form-success-msg');
+            
+            successMsg.classList.remove('hidden');
+            event.target.reset();
+            
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
